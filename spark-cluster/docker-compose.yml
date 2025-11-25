@@ -2,7 +2,7 @@ version: "3.6"
 services:
   # Master
   master-node:
-    image: "binhvd/spark-cluster:0.17"
+    image: "binhvd/spark-cluster:0.18"
     hostname: master-node
     networks:
       - cluster-net
@@ -15,7 +15,7 @@ services:
 
   # Workers
   worker:
-    image: "binhvd/spark-cluster:0.17"
+    image: "binhvd/spark-cluster:0.18"
     networks:
       - cluster-net
     ports:
