@@ -2,7 +2,7 @@ version: "3.6"
 services:
   # Master
   master-node:
-    image: "binhvd/spark-cluster:0.18"
+    image: "binhvd/spark-cluster:0.19"
     hostname: master-node
     networks:
       - cluster-net
@@ -21,7 +21,7 @@ services:
 
   # Workers
   worker:
-    image: "binhvd/spark-cluster:0.18"
+    image: "binhvd/spark-cluster:0.19"
     networks:
       - cluster-net
     # Keep data persistence
