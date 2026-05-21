@@ -88,6 +88,7 @@ RUN pip3 install -r ./requirements.txt
 COPY ./config/stop-spark.sh .
 RUN chmod +x *.sh
 COPY ./config/entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
 WORKDIR /home/notebook
 CMD [ "/bin/bash", "-c", "/entrypoint.sh" ]
