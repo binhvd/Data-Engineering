@@ -1,0 +1,32 @@
+# Three-member MongoDB replica set for local testing.
+#
+# Image: mongo:4.4 by default, because MongoDB 5.0+ needs a CPU with AVX and
+# VirtualBox VMs often don't expose AVX (the container then crashes on start).
+# On a machine with AVX you can use a current version instead:
+#   MONGO_IMAGE=mongo:8.0 ./simple-test.sh
+# The scripts work with both (they use mongosh or the older mongo shell).
+#
+# Host ports are optional (handy for Compass from the host);
+# the scripts only use `docker exec`, so drop them if 27017 is taken.
+x-mongo: &mongo
+  image: ${MONGO_IMAGE:-mongo:4.4}
+  command: ["--replSet", "rs0", "--bind_ip_all"]
+
+services:
+  mongo1:
+    <<: *mongo
+    container_name: mongo1
+    hostname: mongo1
+    ports: ["27017:27017"]
+
+  mongo2:
+    <<: *mongo
+    container_name: mongo2
+    hostname: mongo2
+    ports: ["27018:27017"]
+
+  mongo3:
+    <<: *mongo
+    container_name: mongo3
+    hostname: mongo3
+    ports: ["27019:27017"]
